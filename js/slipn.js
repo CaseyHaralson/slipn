@@ -229,8 +229,25 @@
         numberOfSlidesToPreload,
         numberOfOldSlidesToKeep;
 
-    function loadJsonSlides(jsonSlidesArray, width, height) {
-        if (jsonSlidesArray != null) {
+    function loadSlides(slidesSelector, width, height) {
+        var jsonSlidesArray = [],
+            slides;
+        if (slidesSelector != null) slides = $(slidesSelector + ' .slide');
+        if (slides != null && slides.length > 0) {
+            for (var i = 0; i < slides.length; i++) {
+                var slideElement = slides[i]
+                    slide = {
+                        id: slideElement.id,
+                        content: slideElement.outerHTML.replace('data-slipn-src', 'src')
+                    };
+                jsonSlidesArray.push(slide);
+            }
+
+            $(slidesSelector).remove();
+        }
+
+
+        if (jsonSlidesArray != null && jsonSlidesArray.length > 0) {
             jsonSlides = jsonSlidesArray;
 
             if (width != null) slidesWidth = width;
@@ -262,7 +279,7 @@
 
 
     var slipn = {
-        loadJsonSlides: loadJsonSlides,
+        loadSlides: loadSlides,
         start: start,
         slide: start,
         navigationButtonSelectors: navigationButtonSelectors,

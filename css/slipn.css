@@ -10,6 +10,10 @@ body {
 
 
 
+.slide {
+    display: none;
+}
+
 #slipn .slide {
     display: none;
     z-index: 10;
