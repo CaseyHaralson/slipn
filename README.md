@@ -13,12 +13,12 @@ The library can do several things:
 
 There are a couple of ways to download Slipn:
 * [Download the zip](https://github.com/CaseyHaralson/slipn/archive/0.0.1.zip)
-* Bower – 'bower install slipnslide'
-* Clone the repo: 'git clone https://github.com/caseyharalson/slipn.git'
+* Bower – `bower install slipnslide`
+* Clone the repo: `git clone https://github.com/caseyharalson/slipn.git`
 
 Once you have a copy of Slipn, reference the css file and javascript file in your project.
 Tell Slipn where the slides are on the page along with any other options, and then start the slide show.
-(Link to example section.)
+[Examples](##example)
 
 
 ## Options
