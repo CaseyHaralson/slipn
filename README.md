@@ -6,7 +6,7 @@ The library can do several things:
 * allows deep linking to slides
 * slide preloading (only load slides as they are needed)
 * old slide removal (keeps the current page size down - helpful if viewing large image slides on an iPad, for example)
-* uses your “previous” and “next” links for slide control
+* uses your “previous” and “next” elements for slide control
 
 
 ## Getting Started
@@ -16,10 +16,12 @@ There are a couple of ways to download Slipn:
 * Bower – `bower install slipn`
 * Clone the repo: `git clone https://github.com/caseyharalson/slipn.git`
 
-Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/){:target="_blank"} or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
+Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
 
 
 ## Usage
+
+An example of the following steps put together can be found [here.](https://github.com/CaseyHaralson/slipn/blob/master/index.html)
 
 **First**, reference the slipn.css file in your header and the slipn.js file after the jQuery library.
 
@@ -57,6 +59,7 @@ slipn.navigationButtons('.previous', '.next');
 ```
 
 **Lastly**, start the slide show:
+
 `slipn.start();`
 
 
@@ -71,8 +74,8 @@ The **loadSlides** function takes two parameters:
 * the slides height (example: 1080)
 
 ### Navigation Buttons (required)
-The slide show will not automatically advance which requires the page to have previous and next buttons.
-These buttons aren't included with slipn so they will need to be added and styled to your liking.
+The slide show will not automatically advance which requires the page to have previous and next elements.
+These elements aren't included with slipn so they will need to be added and styled to your liking.
 Once the buttons are on the page, slipn can be told about them through the navigationButtons function.
 The **navigationButtons** function takes two parameters:
 * the css selector for the previous button (example: '.previous')
@@ -105,4 +108,5 @@ There is only one event that is emitted on the #slipn div.
 ## Example
 
 [Basic example](https://github.com/CaseyHaralson/slipn/blob/master/index.html)
+
 Live example: (link to my slide show)

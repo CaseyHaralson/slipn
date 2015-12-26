@@ -235,7 +235,7 @@
                 jsonSlidesArray.push(slide);
             }
 
-            $(slidesSelector).remove();
+            $('#slides').remove();
         }
 
         if (jsonSlidesArray != null && jsonSlidesArray.length > 0) {
