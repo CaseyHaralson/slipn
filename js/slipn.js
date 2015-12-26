@@ -144,7 +144,7 @@
         // show the current slide
         $('#' + id).addClass('activeSlide');
         $('#' + id).fadeIn(500);
-        $('#slipn').trigger('slideLoaded');
+        $('#slipn').trigger('slideLoading');
     };
 
     function removeOldSlidesIfOnPage(id) {
@@ -222,10 +222,9 @@
         numberOfSlidesToPreload,
         numberOfOldSlidesToKeep;
 
-    function loadSlides(slidesSelector, width, height) {
+    function loadSlides(width, height) {
         var jsonSlidesArray = [],
-            slides;
-        if (slidesSelector != null) slides = $(slidesSelector + ' .slide');
+            slides = $('#slides .slide');
         if (slides != null && slides.length > 0) {
             for (var i = 0; i < slides.length; i++) {
                 var slideElement = slides[i]
@@ -275,7 +274,7 @@
         loadSlides: loadSlides,
         start: start,
         slide: start,
-        navigationButtonSelectors: navigationButtonSelectors,
+        navigationButtons: navigationButtonSelectors,
         preloadSlides: function (number) {
             if (number != null) numberOfSlidesToPreload = number;
         },

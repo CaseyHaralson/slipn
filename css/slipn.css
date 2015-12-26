@@ -10,7 +10,7 @@ body {
 
 
 
-.slide {
+#slides .slide {
     display: none;
 }
 
