@@ -42,19 +42,12 @@
                 .css('top', top);
             });
 
-
-
             // clear sizing
             $('#slipn .slide .resize').each(function () {
                 $(this).attr('width', null)
                 .attr('height', null);
             });
         }
-
-        //$('#slipn .slide').each(function () {
-        //    $(this).attr('min-width', slidesWidth).attr('max-width', slidesWidth)
-        //    .attr('min-height', slidesHeight).attr('max-height', slidesHeight);
-        //});
     };
     $(window).on('resize', function () {
         resizeAndCenterSlides();
@@ -93,26 +86,26 @@
         var foundCurrentSlide = false;
         var foundNextSlide = false;
         var currentId = getHashId();
-        if (currentId != -1) {
-            for (var i = 0; i < jsonSlides.length; i++) {
-                var slide = jsonSlides[i];
-                if (firstSlideId == -1) firstSlideId = slide.id;
+        if (currentId == -1) currentId = jsonSlides[0].id;
+           
+        for (var i = 0; i < jsonSlides.length; i++) {
+            var slide = jsonSlides[i];
+            if (firstSlideId == -1) firstSlideId = slide.id;
 
-                if (slide.id == currentId) {
-                    foundCurrentSlide = true;
-                }
-                else if (foundCurrentSlide) {
-                    // this should be the next slide
-                    var nextId = slide.id;
-                    foundNextSlide = true;
-                    routie('/' + nextId);
-                    break;
-                }
+            if (slide.id == currentId) {
+                foundCurrentSlide = true;
             }
-
-            // switch to first if at the end
-            if (!foundNextSlide && firstSlideId != -1) routie('/' + firstSlideId);
+            else if (foundCurrentSlide) {
+                // this should be the next slide
+                var nextId = slide.id;
+                foundNextSlide = true;
+                routie('/' + nextId);
+                break;
+            }
         }
+
+        // switch to first if at the end
+        if (!foundNextSlide && firstSlideId != -1) routie('/' + firstSlideId);
     };
 
 
@@ -136,22 +129,22 @@
 
     function loadSlide() {
         var id = getHashId();
-        if (id != -1) {
-            removeOldSlidesIfOnPage(id);
-            addNextSlidesIfNotAlreadyOnPage(id);
+        if (id == -1) id = jsonSlides[0].id;
+            
+        removeOldSlidesIfOnPage(id);
+        addNextSlidesIfNotAlreadyOnPage(id);
 
-            // make sure the new slide is sized
-            resizeAndCenterSlides();
+        // make sure the new slide is sized
+        resizeAndCenterSlides();
 
-            // hide the previous slide
-            $('#slipn .activeSlide').fadeOut(500);
-            $('#slipn .activeSlide').removeClass('activeSlide');
+        // hide the previous slide
+        $('#slipn .activeSlide').fadeOut(500);
+        $('#slipn .activeSlide').removeClass('activeSlide');
 
-            // show the current slide
-            $('#' + id).addClass('activeSlide');
-            $('#' + id).fadeIn(500);
-            $('#slipn').trigger('slideLoaded');
-        }
+        // show the current slide
+        $('#' + id).addClass('activeSlide');
+        $('#' + id).fadeIn(500);
+        $('#slipn').trigger('slideLoaded');
     };
 
     function removeOldSlidesIfOnPage(id) {
@@ -246,7 +239,6 @@
             $(slidesSelector).remove();
         }
 
-
         if (jsonSlidesArray != null && jsonSlidesArray.length > 0) {
             jsonSlides = jsonSlidesArray;
 
@@ -260,10 +252,11 @@
     };
 
     function start() {
+        routie.whenNoRouteFound(loadSlide); // had to add this to the library
+
         var id = getHashId();
         if (id == -1 && jsonSlides != null && jsonSlides.length > 0) {
-            var firstId = jsonSlides[0].id;
-            routie('/' + firstId);
+            loadSlide();
         }
         else routie.reload();
     };
@@ -494,6 +487,11 @@
         paused = false;
     };
 
+    var noRouteFound;
+    routie.whenNoRouteFound = function (fn) {
+        noRouteFound = fn;
+    };
+
     var hashChanged = routie.reload = function () {
         if (paused == false) {
             var hash = getHash();
@@ -503,6 +501,7 @@
                     return;
                 }
             }
+            if (noRouteFound && Object.prototype.toString.call(noRouteFound) == '[object Function]') noRouteFound();
         }
     };
 
