@@ -1,0 +1,21 @@
+{
+  "name": "slipn",
+  "description": "A slide show library that excels at fullscreen, interactive, image presentations",
+  "main": [
+    "css/slipn.css",
+    "js/slipn.js"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3"
+  },
+  "keywords": [
+    "slide",
+    "show",
+    "image",
+    "presentation"
+  ],
+  "authors": [
+    "Casey Haralson"
+  ],
+  "license": "MIT"
+}
