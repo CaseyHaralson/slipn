@@ -17,12 +17,12 @@ There are a couple of ways to download Slipn:
 * Bower – `bower install slipn`
 * Clone the repo: `git clone https://github.com/caseyharalson/slipn.git`
 
-Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
-
 
 ## Usage
 
 An example of the following steps put together can be found [here.](https://github.com/CaseyHaralson/slipn/blob/master/demo.html)
+
+Note: Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
 
 **First**, reference the slipn.css file in your header and the slipn.js file after the jQuery library.
 
