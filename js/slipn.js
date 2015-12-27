@@ -223,8 +223,12 @@
         numberOfOldSlidesToKeep;
 
     function loadSlides(width, height) {
+        // backward compatibility stuff
+        var slideContainer = '#slides';
+        if ($(slideContainer) == null || $(slideContainer).length == 0) slideContainer = '#slipn';
+
         var jsonSlidesArray = [],
-            slides = $('#slides .slide');
+            slides = $(slideContainer + ' .slide');
         if (slides != null && slides.length > 0) {
             for (var i = 0; i < slides.length; i++) {
                 var slideElement = slides[i]
@@ -235,7 +239,7 @@
                 jsonSlidesArray.push(slide);
             }
 
-            $('#slides').remove();
+            $(slideContainer).html('');
         }
 
         if (jsonSlidesArray != null && jsonSlidesArray.length > 0) {

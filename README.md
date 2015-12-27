@@ -8,7 +8,6 @@ The library can do several things:
 * old slide removal (keeps the current page size down - helpful if viewing large image slides on an iPad, for example)
 * uses your “previous” and “next” elements for slide control
 
-Demo link here
 
 ## Getting Started
 
@@ -21,6 +20,8 @@ There are a couple of ways to download Slipn:
 ## Usage
 
 An example of the following steps put together can be found [here.](https://github.com/CaseyHaralson/slipn/blob/master/demo.html)
+The easiest way to start using Slipn is to download the library and then open the demo.html file.
+You can then edit the demo file in your favorite editor to change the slides and styles.
 
 Note: Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
 
@@ -30,11 +31,7 @@ Note: Slipn requires jQuery so that library will need to be [downloaded](https:/
 
 `<div id='slipn'></div>`
 
-**Third**, add the slides div to your page that will contain the slides:
-
-`<div id='slides'></div>`
-
-**Fourth**, add the slides to the slides div.
+**Third**, add the slides to the slipn div.
 There are several things to note here:
 * the slide id will show up in the browser url for deep linking
 * the slide element needs a class of "slide"
@@ -42,7 +39,7 @@ There are several things to note here:
 * image source needs to be defined in a "data-slipn-src" property
 
 ```
-<div id='slides'>
+<div id='slipn'>
 	<div id='slide01' class='slide'>
 		<img class='resize' data-slipn-src='beach01.jpg' />
 	</div>
@@ -52,7 +49,7 @@ There are several things to note here:
 </div>
 ```
 
-**Fifth**, after the slipn.js reference, the slides data and any options need to be passed to slipn:
+**Fourth**, after the slipn.js reference, the slides data and any options need to be passed to slipn:
 ```
 slipn.loadSlides(1920, 1080);
 slipn.preloadSlides(3);
