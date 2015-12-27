@@ -8,6 +8,7 @@ The library can do several things:
 * old slide removal (keeps the current page size down - helpful if viewing large image slides on an iPad, for example)
 * uses your “previous” and “next” elements for slide control
 
+Demo link here
 
 ## Getting Started
 
@@ -103,10 +104,3 @@ The **keepSlides** function takes one parameter:
 ## Events
 There is only one event that is emitted on the #slipn div.
 * the **slideLoading** event is emitted whenever a slide is being loaded.
-
-
-## Example
-
-[Basic example](https://github.com/CaseyHaralson/slipn/blob/master/index.html)
-
-Live example: (link to my slide show)
