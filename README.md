@@ -12,7 +12,7 @@ The library can do several things:
 ## Getting Started
 
 There are a couple of ways to download Slipn:
-* [Download the zip](https://github.com/CaseyHaralson/slipn/archive/0.0.1.zip)
+* [Download the zip](https://github.com/CaseyHaralson/slipn/archive/0.1.0.zip)
 * Bower – `bower install slipn`
 * Clone the repo: `git clone https://github.com/caseyharalson/slipn.git`
 
