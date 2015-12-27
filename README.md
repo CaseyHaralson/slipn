@@ -22,7 +22,7 @@ Slipn requires jQuery so that library will need to be [downloaded](https://jquer
 
 ## Usage
 
-An example of the following steps put together can be found [here.](https://github.com/CaseyHaralson/slipn/blob/master/index.html)
+An example of the following steps put together can be found [here.](https://github.com/CaseyHaralson/slipn/blob/master/demo.html)
 
 **First**, reference the slipn.css file in your header and the slipn.js file after the jQuery library.
 
