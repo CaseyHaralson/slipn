@@ -64,20 +64,20 @@
     function previousSlide() {
         var previousId = -1;
         var currentId = getHashId();
-        if (currentId != -1) {
-            for (var i = 0; i < jsonSlides.length; i++) {
-                var slide = jsonSlides[i];
-                if (slide.id != currentId) {
-                    previousId = slide.id;
-                }
-                else if (slide.id == currentId) {
-                    // we found the current slide
-                    // and the previousId should be filled (maybe not, so lets test)
-                    // route to the previous slide
-                    if (previousId == -1) previousId = jsonSlides[jsonSlides.length - 1].id;
-                    routie('/' + previousId);
-                    break;
-                }
+        if (currentId == -1) currentId = jsonSlides[0].id;
+
+        for (var i = 0; i < jsonSlides.length; i++) {
+            var slide = jsonSlides[i];
+            if (slide.id != currentId) {
+                previousId = slide.id;
+            }
+            else if (slide.id == currentId) {
+                // we found the current slide
+                // and the previousId should be filled (maybe not, so lets test)
+                // route to the previous slide
+                if (previousId == -1) previousId = jsonSlides[jsonSlides.length - 1].id;
+                routie('/' + previousId);
+                break;
             }
         }
     };
