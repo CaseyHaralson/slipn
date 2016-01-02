@@ -8,6 +8,7 @@ The library can do several things:
 * old slide removal (keeps the current page size down - helpful if viewing large image slides on an iPad, for example)
 * uses your “previous” and “next” elements for slide control
 
+**Example:** [Colorado to California Slideshow](http://www.caseyharalson.com/photography/coloradotocalifornia.html)
 
 ## Getting Started
 
@@ -23,9 +24,10 @@ An example of the following steps put together can be found [here.](https://gith
 The easiest way to start using Slipn is to download the library and then open the demo.html file.
 You can then edit the demo file in your favorite editor to change the slides and styles.
 
-Note: Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
 
 **First**, reference the slipn.css file in your header and the slipn.js file after the jQuery library.
+
+Note: Slipn requires jQuery so that library will need to be [downloaded](https://jquery.com/download/) or [linked to from a CDN](https://jquery.com/download/#using-jquery-with-a-cdn).
 
 **Second**, add the slipn div to your page:
 
@@ -49,16 +51,16 @@ There are several things to note here:
 </div>
 ```
 
-**Fourth**, after the slipn.js reference, the slides data and any options need to be passed to slipn:
+**Lastly**, after the slipn.js reference, the slides data and any options need to be passed to slipn and the slideshow needs to be started:
 ```
-slipn.loadSlides(1920, 1080);
-slipn.preloadSlides(3);
-slipn.navigationButtons('.previous', '.next');
+$(window).load(function() {
+	slipn.loadSlides(1920, 1080);
+	slipn.navigationButtons('.previous', '.next');
+	slipn.preloadSlides(3);
+
+	slipn.start();
+});
 ```
-
-**Lastly**, start the slide show:
-
-`slipn.start();`
 
 
 ## Options
@@ -71,6 +73,8 @@ The **loadSlides** function takes two parameters:
 * the slides width (example: 1920)
 * the slides height (example: 1080)
 
+`slipn.loadSlides(1920, 1080);`
+
 ### Navigation Buttons (required)
 The slide show will not automatically advance which requires the page to have previous and next elements.
 These elements aren't included with slipn so they will need to be added and styled to your liking.
@@ -79,16 +83,22 @@ The **navigationButtons** function takes two parameters:
 * the css selector for the previous button (example: '.previous')
 * the css selector for the next button (example: '.next')
 
+`slipn.navigationButtons('.previous', '.next');`
+
 ### Starting The Slideshow (required)
 There are two functions that will start the slideshow after the options have been loaded:
 * start
 * slide
+
+`slipn.start();`
 
 ### Preloading Slides
 Slipn will, by default, load all of the slides once it is started.
 The slides can be loaded only as necessary by using the preloadSlides function.
 The **preloadSlides** function takes one parameter:
 * how many slides to preload (example: 3)
+
+`slipn.preloadSlides(3);`
 
 ### Removing slides
 Slipn will, by default, keep all of the slides once they are loaded.
@@ -97,7 +107,18 @@ Removing the slides can help to keep the loaded page size down for less powerful
 The **keepSlides** function takes one parameter:
 * how many slides should be kept after viewing (example: 2)
 
+`slipn.keepSlides(2);`
+
 
 ## Events
+
 There is only one event that is emitted on the #slipn div.
-* the **slideLoading** event is emitted whenever a slide is being loaded.
+
+###Slide Loading###
+The **slideLoading** event is emitted whenever a slide is being loaded.
+
+```
+$('#slipn').on('slideLoading', function() {
+	// your stuff
+});
+```
