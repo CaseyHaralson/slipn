@@ -1,4 +1,4 @@
-# Slipn - Starter Pack
+# Slipn - Starter Pack (not finished)
 
 This starter pack should help to get started quickly.
 
