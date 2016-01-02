@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Slideshow</title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/slipn.css" />
+    <link rel="stylesheet" href="css/myslideshow.css" />
+
+</head>
+<body>
+
+    <div class="navigation icon">
+        <div class="prev icon fa fa-angle-left fa-5x"></div>
+        <div class="next icon fa fa-angle-right fa-5x"></div>
+    </div>
+    <div class="navigation text">
+        <div class="fullscreen-container">
+            <div class="fullscreen" title="Go Fullscreen">
+                <i class="fa fa-expand"></i>
+            </div>
+        </div>
+        <div class="prev text">Previous</div>
+        <div class="next text">Next</div>
+    </div>
+
+
+    <div id="slipn">
+
+        <!--
+            TEMPLATES:
+
+
+            SLIDE EXAMPLE WITH TEXT TEMPLATE
+            =====================================
+            <div id='slide-example-with-header' class='slide'>
+                <div class='slide-text'>
+                    <div class='container'>
+                        <h1>My Slideshow!</h1>
+                        <p>
+                            Welcome to my slideshow!
+                        </p>
+                        <span class='close fa fa-close'></span>
+                    </div>
+                </div>
+                <img class='resize' data-slipn-src='img/water01.jpg'>
+            </div>
+            ======================================
+
+
+            REGULAR SLIDE TEMPLATE
+            ======================================
+            <div id='regular-slide' class='slide'>
+                <img class='resize' data-slipn-src='img/water03.jpg'>
+            </div>
+            ======================================
+            
+
+            END TEMPLATES
+            -->
+
+
+
+
+        <!-- SLIDES -->
+
+        <div id='slide-example-with-header' class='slide'>
+            <div class='slide-text'>
+                <div class='container'>
+                    <h3>This slide is good</h3>
+                    <p>
+                        Yep, more information.
+                    </p>
+                    <span class='close fa fa-close'></span>
+                </div>
+            </div>
+            <img class='resize' data-slipn-src='img/water01.jpg'>
+        </div>
+
+        <div id='slide-example-with-text' class='slide'>
+            <div class='slide-text'>
+                <div class='container'>
+                    <p>
+                        Some information
+                    </p>
+                    <span class='close fa fa-close'></span>
+                </div>
+            </div>
+            <img class='resize' data-slipn-src='img/water02.jpg'>
+        </div>
+
+        <div id='regular-slide' class='slide'>
+            <img class='resize' data-slipn-src='img/water03.jpg'>
+        </div>
+        
+        <!-- END SLIDES -->
+
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/slipn.js"></script>
+    <script src="js/myslideshow.js"></script>
+    <script>
+        $(window).load(function () {
+            slipn.loadSlides(2010, 1507); // slide dimensions
+            slipn.navigationButtons('.prev', '.next');
+            slipn.preloadSlides(3);
+            slipn.keepSlides(3);
+            slipn.start();
+        });
+    </script>
+
+</body>
+</html>
