@@ -23,6 +23,11 @@
             top: 20px;
             right: 20px;
         }
+        .show-thumbnails {
+            position: fixed;
+            top: 50px;
+            left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -31,6 +36,7 @@
     <div class="navigation">
         <div class="previous">Previous</div>
         <div class="next">Next</div>
+        <div class="show-thumbnails">Thumbs</div>
     </div>
 
 
@@ -60,6 +66,8 @@
             slipn.navigationButtons('.previous', '.next');
 
             // any other slipn configurations here
+
+            slipn.enableThumbnails('.show-thumbnails');
 
             slipn.start();
         });

@@ -192,8 +192,9 @@
         // see if the slide is already on the page
         var slideElement = $('#' + id);
         if (slideElement.length == 0) {
-            var html = $('#slipn').html();
-            $('#slipn').html(html + newSlide.content);
+            //var html = $('#slipn').html();
+            //$('#slipn').html(html + newSlide.content);
+            $('#slipn').append(newSlide.content);
         }
 
         // check to see if the next slides are on the page
@@ -201,8 +202,9 @@
             var slide = nextSlides[i];
             var slideElement = $('#' + slide.id);
             if (slideElement.length == 0) {
-                var html = $('#slipn').html();
-                $('#slipn').html(html + slide.content);
+                //var html = $('#slipn').html();
+                //$('#slipn').html(html + slide.content);
+                $('#slipn').append(slide.content);
             }
         }
     };
@@ -220,18 +222,15 @@
         previousButtonSelector,
         nextButtonSelector,
         numberOfSlidesToPreload,
-        numberOfOldSlidesToKeep;
+        numberOfOldSlidesToKeep,
+        slideContainer = '#slipn';
 
     function loadSlides(width, height) {
-        // backward compatibility stuff
-        var slideContainer = '#slides';
-        if ($(slideContainer) == null || $(slideContainer).length == 0) slideContainer = '#slipn';
-
         var jsonSlidesArray = [],
             slides = $(slideContainer + ' .slide');
         if (slides != null && slides.length > 0) {
             for (var i = 0; i < slides.length; i++) {
-                var slideElement = slides[i]
+                var slideElement = slides[i],
                     slide = {
                         id: slideElement.id,
                         content: slideElement.outerHTML.replace('data-slipn-src', 'src')
@@ -273,6 +272,55 @@
         }
     };
 
+    function enableThumbnails(showThumbnailsSelector) {
+        $(slideContainer).append('<div class="thumbnails"><div class="close-thumbnails">Close</div><div class="thumbnails-container"></div></div>');
+
+        if (jsonSlides != null && jsonSlides.length > 0) {
+            for (var i = 0; i < jsonSlides.length; i++) {
+                var slide = jsonSlides[i];
+                var image = $(slide.content).find('img');
+                var thumbnailSrc = $(image).attr('data-slipn-thumbnail-src') || $(image).attr('src');
+                $(slideContainer + ' .thumbnails-container').append('<img id="' + slide.id + '_thumbnail" src="' + thumbnailSrc + '" />');
+            }
+            $(document).on('click', slideContainer + ' .thumbnails-container img', function () {
+                var test = $(this).attr('id');
+                hideThumbnails();
+                routie('/' + test.replace('_thumbnail', ''));
+            });
+        }
+
+        if (showThumbnailsSelector != null && showThumbnailsSelector.length > 0) {
+            $(showThumbnailsSelector).click(showThumbnails);
+        }
+        $(document).on('click', slideContainer + ' .thumbnails .close-thumbnails', hideThumbnails);
+    }
+
+    function showThumbnails() {
+        $(slideContainer + ' .thumbnails').show(500);
+        setTimeout(function () {
+            $('html').addClass('thumbnails-active');
+            $('body').addClass('thumbnails-active');
+        }, 500);
+
+        // mark current thumbnail as active
+        var currentId = getHashId();
+        if (currentId == -1) currentId = jsonSlides[0].id;
+        var thumbnails = $(slideContainer + ' .thumbnails-container img');
+        if (thumbnails != null && thumbnails.length > 0) {
+            for (var i = 0; i < thumbnails.length; i++) {
+                var thumbnail = thumbnails[i];
+                if ($(thumbnail).attr('id') == currentId + '_thumbnail') {
+                    $(thumbnail).addClass('active');
+                } else $(thumbnail).removeClass('active');
+            }
+        }
+    }
+    function hideThumbnails() {
+        $(slideContainer + ' .thumbnails').hide(1000);
+        $('html').removeClass('thumbnails-active');
+        $('body').removeClass('thumbnails-active');
+    }
+
 
     var slipn = {
         loadSlides: loadSlides,
@@ -284,7 +332,8 @@
         },
         keepSlides: function (number) {
             if (number != null) numberOfOldSlidesToKeep = number;
-        }
+        },
+        enableThumbnails: enableThumbnails
     };
 
 
