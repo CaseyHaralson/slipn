@@ -296,6 +296,8 @@
     }
 
     function showThumbnails() {
+        $('#slipn').trigger('showingThumbnails');
+
         $(slideContainer + ' .thumbnails').show(500);
         setTimeout(function () {
             $('html').addClass('thumbnails-active');
